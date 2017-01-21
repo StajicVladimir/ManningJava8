@@ -1,6 +1,3 @@
-import com.sun.deploy.util.StringUtils;
-import com.sun.deploy.util.SystemUtils;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -11,7 +8,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * Created by Vladimir on 11-Jan-17.
@@ -162,5 +158,6 @@ public class Java8InAction {
 
         result = m.apply(1);
         System.out.println(result);
+        Chapter2.hello();
     }
 }
