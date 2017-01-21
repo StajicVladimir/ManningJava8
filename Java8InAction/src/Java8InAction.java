@@ -1,12 +1,15 @@
 import com.sun.deploy.util.StringUtils;
+import com.sun.deploy.util.SystemUtils;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -134,7 +137,30 @@ public class Java8InAction {
         System.out.println("********* SORTED BY WEIGHT ************");
         appleList.forEach(System.out::println);
 
-        
+        appleList.sort(Comparator.comparing(Apple::getColor));
+        System.out.println(" ********* SORTED BY COLOR ***********");
+        appleList.forEach(System.out::println);
 
+        //lambda VS method reference
+        //Lambda
+        List<String> str = Arrays.asList("a","b","C","A","c","B");
+        str.sort((s1,s2) ->s1.compareToIgnoreCase(s2));
+        str.forEach(System.out::println);
+        //Method Reference
+        List<String> str1 = Arrays.asList("a","b","C","A","c","B");
+        str1.sort(String::compareToIgnoreCase);
+        str1.forEach(System.out::println);
+
+        //Composing Functions
+        System.out.println("Composing Functions");
+        Function<Integer, Integer> f = x -> x+1;
+        Function<Integer, Integer> g = x-> x*2;
+        Function<Integer, Integer> h = f.andThen(g); // First f then g: g(f(x))
+        Function<Integer, Integer> m = f.compose(g);// First g then  f: f(g(x))
+        int result = h.apply(1);
+        System.out.println(result);
+
+        result = m.apply(1);
+        System.out.println(result);
     }
 }
